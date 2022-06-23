@@ -1,0 +1,3972 @@
+{
+	"info": {
+		"_postman_id": "fb18c4c2-7e78-4312-bb33-eeb567889c14",
+		"name": "Go Rest - Get posts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20954727"
+	},
+	"item": [
+		{
+			"name": "Get users",
+			"item": [
+				{
+					"name": "[CT-001] - Buscar todos os usuários",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"\r",
+									"pm.test(\"Save first elem of resp in collection variables\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"vid\", jsonData[0].id);\r",
+									"    pm.collectionVariables.set(\"vname\", jsonData[0].name);\r",
+									"    pm.collectionVariables.set(\"vemail\", jsonData[0].email);\r",
+									"    pm.collectionVariables.set(\"vgender\", jsonData[0].gender);\r",
+									"    pm.collectionVariables.set(\"vstatus\", jsonData[0].status); \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-002] - Buscar por usuários específico id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/{{vid}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{vid}}"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-003] - Filtrar usuários pelo nome",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"name\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?name={{vname}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{vname}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-004] - Filtrar usuários pelo email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"email\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?email={{vemail}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{vemail}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-005] - Filtrar usuários pelo sexo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"gender\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?gender={{vgender}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "gender",
+									"value": "{{vgender}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-006] - Filtrar usuários pelo situação",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"status\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?status={{vstatus}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "{{vstatus}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-007] - Filtrar usuários pelo nome, email, sexo e situação",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"name\",\"email\",\"gender\",\"status\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?name={{vname}}&email={{vemail}}&gender={{vgender}}&status={{vstatus}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{vname}}"
+								},
+								{
+									"key": "email",
+									"value": "{{vemail}}"
+								},
+								{
+									"key": "gender",
+									"value": "{{vgender}}"
+								},
+								{
+									"key": "status",
+									"value": "{{vstatus}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-008] - Filtrar usuários pelo nome, email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"name\",\"email\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?name={{vname}}&email={{vemail}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{vname}}"
+								},
+								{
+									"key": "email",
+									"value": "{{vemail}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-009] - Filtrar usuários pelo nome, sexo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"name\",\"email\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?name={{vname}}&gender={{vgender}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{vname}}"
+								},
+								{
+									"key": "gender",
+									"value": "{{vgender}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-010] - Filtrar usuários pelo nome e situação",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"name\",\"status\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?name={{vname}}&status={{vstatus}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{vname}}"
+								},
+								{
+									"key": "status",
+									"value": "{{vstatus}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-011] - Filtrar usuários pelo email e sexo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"email\",\"gender\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?email={{vemail}}&gender={{vgender}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{vemail}}"
+								},
+								{
+									"key": "gender",
+									"value": "{{vgender}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-012] - Filtrar usuários pelo email e situação",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"email\",\"status\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?email={{vemail}}&status={{vstatus}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{vemail}}"
+								},
+								{
+									"key": "status",
+									"value": "{{vstatus}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-013] - Filtrar usuários pelo sexo e situação",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"name\",\"email\",\"gender\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"gender\",\"status\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?gender={{vgender}}&status={{vstatus}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "gender",
+									"value": "{{vgender}}"
+								},
+								{
+									"key": "status",
+									"value": "{{vstatus}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-014] - Buscar usuário por id inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(404)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/9009090909090909",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"9009090909090909"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-015] - Buscar usuário por id inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(404)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/-x89898d989fd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"-x89898d989fd"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-016] - Buscar usuário por com nome inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?name=sdfssidfjisudf7s98d7f98s7d",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "sdfssidfjisudf7s98d7f98s7d"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-017] - Buscar usuário por email inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?email=sdfssidfjisudf7s98d7f98s7d",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "sdfssidfjisudf7s98d7f98s7d"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-018] - Buscar usuário por sexo inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?gender=noespecifsdjkfhsdkjfh99",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "gender",
+									"value": "noespecifsdjkfhsdkjfh99"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-019] - Buscar usuário por situação inválida",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/?status=noespecifsdjkfhsdkjfh99",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "noespecifsdjkfhsdkjfh99"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get posts",
+			"item": [
+				{
+					"name": "[CT-001] - Buscar todos os posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"body\"])\r",
+									"\r",
+									"pm.test(\"Save first elem of resp in collection variables\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"vid\", jsonData[0].id);\r",
+									"    pm.collectionVariables.set(\"vuser_id\", jsonData[0].user_id);\r",
+									"    pm.collectionVariables.set(\"vtitle\", jsonData[0].title);\r",
+									"    pm.collectionVariables.set(\"vbody\", jsonData[0].body); \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-002] - Buscar posts por id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"id\",\"user_id\",\"title\",\"body\"])\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/{{vid}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								"{{vid}}"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-003] - Filtrar posts por user_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\"])\r",
+									"_.bodyValueIsEqualVariable([\"user_id\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts?user_id={{vuser_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "{{vuser_id}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-004] - Filtrar posts por title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"title\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts?title={{vtitle}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "{{vtitle}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-005] - Filtrar posts por body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"body\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts?body={{vbody}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "body",
+									"value": "{{vbody}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-006] - Filtrar posts por palavras no body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"body\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts?body={{vbody}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "body",
+									"value": "{{vbody}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-007] - Filtrar posts por user_id, title, body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"user_id\",\"title\",\"body\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts?user_id=4083&title=Perspiciatis acerbitas alter adfero caveo speciosus certo ait comes repellat.&body=xxxxxxxxxxxxxxx",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "4083"
+								},
+								{
+									"key": "title",
+									"value": "Perspiciatis acerbitas alter adfero caveo speciosus certo ait comes repellat."
+								},
+								{
+									"key": "body",
+									"value": "xxxxxxxxxxxxxxx"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-008] - Filtrar posts por user_id, title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"title\"])\r",
+									"_.bodyValueIsEqualVariable([\"user_id\",\"title\",\"title\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts?user_id=4083&title=Perspiciatis acerbitas alter adfero caveo speciosus certo ait comes repellat.",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "4083"
+								},
+								{
+									"key": "title",
+									"value": "Perspiciatis acerbitas alter adfero caveo speciosus certo ait comes repellat."
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-009] - Buscar por id inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(404)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/9999999999999",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								"9999999999999"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-010] - Buscar por id inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(404)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/xdff",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								"xdff"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-011] - Filtrar por user_id inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/?user_id=99999999",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								""
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "99999999"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-012] - Filtrar por user_id inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/?user_id=xrfgdsafds%23*_+",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								""
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "xrfgdsafds%23*_+"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-013] - Filtrar por title inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/?title=zzzzzzzzzzzzzzzzzzzzz",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								""
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "zzzzzzzzzzzzzzzzzzzzz"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-014] - Filtrar por body inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/?user_id=xrfgdsafds%23*_+",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								""
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "xrfgdsafds%23*_+"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Get comments",
+			"item": [
+				{
+					"name": "[CT-001] - Buscar todos os comentários",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"post_id\",\"name\",\"email\",\"body\"])\r",
+									"\r",
+									"pm.test(\"Save first elem of resp in collection variables\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"vid\", jsonData[0].id);\r",
+									"    pm.collectionVariables.set(\"vpost_id\", jsonData[0].post_id);\r",
+									"    pm.collectionVariables.set(\"vname\", jsonData[0].name);\r",
+									"    pm.collectionVariables.set(\"vemail\", jsonData[0].email);\r",
+									"    pm.collectionVariables.set(\"vbody\", jsonData[0].body); \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-002] - Buscar comentários por post_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"post_id\",\"name\",\"email\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"id\",\"post_id\",\"name\",\"email\",\"body\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments/{{vid}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments",
+								"{{vid}}"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-003] - Filtrar comentários por post_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"post_id\",\"name\",\"email\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"post_id\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments?post_id={{vpost_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "{{vpost_id}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-004] - Filtrar comentários por name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"post_id\",\"name\",\"email\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"name\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments?name={{vname}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{vname}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-005] - Filtrar comentários por email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"post_id\",\"name\",\"email\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"email\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments?email={{vemail}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{vemail}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-006] - Filtrar comentários por body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"post_id\",\"name\",\"email\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"body\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments?body={{vbody}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "body",
+									"value": "{{vbody}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-007] - Filtrar comentários por body e email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"post_id\",\"name\",\"email\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"body\",\"email\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments?body={{vbody}}&email={{vemail}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "body",
+									"value": "{{vbody}}"
+								},
+								{
+									"key": "email",
+									"value": "{{vemail}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-008] - Filtrar comentários por body e name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"post_id\",\"name\",\"email\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"body\",\"name\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments?body={{vbody}}&name={{vname}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "body",
+									"value": "{{vbody}}"
+								},
+								{
+									"key": "name",
+									"value": "{{vname}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-009] - Filtrar comentários por name e email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"post_id\",\"name\",\"email\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"name\",\"email\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments?email={{vemail}}&name={{vname}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{vemail}}"
+								},
+								{
+									"key": "name",
+									"value": "{{vname}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-010] - Filtrar comentários por id inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(404)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments/xd93",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments",
+								"xd93"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-011] - Filtrar comentários por id inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(404)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments/9990990909090990909",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments",
+								"9990990909090990909"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-012] - Filtrar comentários por post_id inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments/?post_id=xd93",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments",
+								""
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "xd93"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-013] - Filtrar comentários por post_id inexistente Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments/?post_id=9990990909090990909",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments",
+								""
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "9990990909090990909"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-014] - Filtrar comentários por name inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/comments/?name=xuysiodufoisudofiusd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"comments",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "xuysiodufoisudofiusd"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get todos",
+			"item": [
+				{
+					"name": "[CT-001] - Buscar todos os todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									"\r",
+									"pm.test(\"Save first elem of resp in collection variables\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"vid\", jsonData[0].id);\r",
+									"    pm.collectionVariables.set(\"vuser_id\", jsonData[0].user_id);\r",
+									"    pm.collectionVariables.set(\"vtitle\", jsonData[0].title);\r",
+									"    pm.collectionVariables.set(\"vdue_on\", jsonData[0].due_on);\r",
+									"    pm.collectionVariables.set(\"vstatus\", jsonData[0].status); \r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-002] - Buscar todos por id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos/{{vid}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos",
+								"{{vid}}"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-003] - Filtrar todos por user_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"user_id\"])\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos?user_id={{vuser_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "{{vuser_id}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-004] - Filtrar todos por title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"title\"])\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos?title={{vtitle}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "{{vtitle}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-005] - Filtrar todos por due_on",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"due_on\"])\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos?due_on={{vdue_on}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "due_on",
+									"value": "{{vdue_on}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-006] - Filtrar todos por status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"status\"])\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos?status={{vstatus}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "{{vstatus}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-007] - Filtrar todos por title e status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"title\",\"status\"])\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos?status={{vstatus}}&title={{vtitle}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "{{vstatus}}"
+								},
+								{
+									"key": "title",
+									"value": "{{vtitle}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-008] - Filtrar todos por due_on e status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"title\",\"status\"])\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos?status={{vstatus}}&due_on={{vdue_on}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "{{vstatus}}"
+								},
+								{
+									"key": "due_on",
+									"value": "{{vdue_on}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-009] - Filtrar todos por title, due_on e status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([,\"due_on\",\"title\",\"status\"])\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos?status={{vstatus}}&due_on={{vdue_on}}&title={{vtitle}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "{{vstatus}}"
+								},
+								{
+									"key": "due_on",
+									"value": "{{vdue_on}}"
+								},
+								{
+									"key": "title",
+									"value": "{{vtitle}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-010] - Buscar todos por id inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(404)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos/sdfsd678979",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos",
+								"sdfsd678979"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-011] - Buscar todos por id inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(404)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos/90909090990909",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos",
+								"90909090990909"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-012] - Filtrar todos por user_id inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos/?user_id=testando238940-29834098",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos",
+								""
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "testando238940-29834098"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-013] - Filtrar todos por title inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos/?title=testando238940-29834098",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos",
+								""
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "testando238940-29834098"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-014] - Filtrar todos por due_on inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos/?due_on=testando238940-29834098",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos",
+								""
+							],
+							"query": [
+								{
+									"key": "due_on",
+									"value": "testando238940-29834098"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-014] - Filtrar todos por status inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/todos/?status=testando238940-29834098",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "testando238940-29834098"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get users/posts",
+			"item": [
+				{
+					"name": "[CT-001] - Buscar todos posts por user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"body\"])\r",
+									"\r",
+									"pm.test(\"Save first elem of resp in collection variables\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"vid\", jsonData[0].id);\r",
+									"    pm.collectionVariables.set(\"vuser_id\", jsonData[0].user_id);\r",
+									"    pm.collectionVariables.set(\"vtitle\", jsonData[0].title);\r",
+									"    pm.collectionVariables.set(\"vbody\", jsonData[0].body);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/{{vuser_id}}/posts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{vuser_id}}",
+								"posts"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-002] - Filtrar posts de um usuário por title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"title\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/{{vuser_id}}/posts?title={{vtitle}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{vuser_id}}",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "{{vtitle}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-003] - Filtrar posts de um usuário por body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"body\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/{{vuser_id}}/posts?body={{vbody}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{vuser_id}}",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "body",
+									"value": "{{vbody}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-004] - Buscar posts de um usuário inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(404)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/99999999999999999999909909/posts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"99999999999999999999909909",
+								"posts"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-005] - Buscar posts de um usuário inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(404)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/xgdhjskldfhkjh99/posts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"xgdhjskldfhkjh99",
+								"posts"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-006] - Filtrar posts de um usuário por title inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/{{vuser_id}}/posts?title=sdfasdfioqujwehklrjhwer90809w80r98",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{vuser_id}}",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "sdfasdfioqujwehklrjhwer90809w80r98"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-006] - Filtrar posts de um usuário por body inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/{{vuser_id}}/posts?body=sdfasdfioqujwehklrjhwer90809w80r98",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{vuser_id}}",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "body",
+									"value": "sdfasdfioqujwehklrjhwer90809w80r98"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get posts/comments",
+			"item": [
+				{
+					"name": "[CT-001] - Buscar comentários de um post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"post_id\",\"name\",\"email\",\"body\"])\r",
+									"\r",
+									"pm.test(\"Save first elem of resp in collection variables\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"vid\", jsonData[0].id);\r",
+									"    pm.collectionVariables.set(\"vpost_id\", jsonData[0].post_id);\r",
+									"    pm.collectionVariables.set(\"vname\", jsonData[0].name);\r",
+									"    pm.collectionVariables.set(\"vemail\", jsonData[0].email);\r",
+									"    pm.collectionVariables.set(\"vbody\", jsonData[0].body);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/{{vpost_id}}/comments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								"{{vpost_id}}",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "body",
+									"value": "Optio qui eligendi",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Adheesh Achari",
+									"disabled": true
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-002] - Filtrar comentários por name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"post_id\",\"name\",\"email\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"id\",\"post_id\",\"name\",\"email\",\"body\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/{{vpost_id}}/comments?name={{vname}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								"{{vpost_id}}",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{vname}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-003] - Filtrar comentários por email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"post_id\",\"name\",\"email\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"id\",\"post_id\",\"name\",\"email\",\"body\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/{{vpost_id}}/comments?email={{vemail}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								"{{vpost_id}}",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{vemail}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-004] - Filtrar comentários por body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"post_id\",\"name\",\"email\",\"body\"])\r",
+									"_.bodyValueIsEqualVariable([\"id\",\"post_id\",\"name\",\"email\",\"body\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/{{vpost_id}}/comments?body={{vbody}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								"{{vpost_id}}",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "body",
+									"value": "{{vbody}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-005] - Buscar comentários de um post inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/90909090909090909090/comments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								"90909090909090909090",
+								"comments"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-006] - Buscar comentários de um post inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/xjhklshdiks9r443-1/comments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								"xjhklshdiks9r443-1",
+								"comments"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-007] - Filtrar comentários de um post por nome inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/90909090909090909090/comments?name=zzzzzzzzwyieuyriuwey89998",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								"90909090909090909090",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "zzzzzzzzwyieuyriuwey89998"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-008] - Filtrar comentários de um post por email inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/90909090909090909090/comments?email=zzzzzzzzwyieuyriuwey89998",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								"90909090909090909090",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "zzzzzzzzwyieuyriuwey89998"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-009] - Filtrar comentários de um post por body inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/posts/90909090909090909090/comments?body=zzzzzzzzwyieuyriuwey89998",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts",
+								"90909090909090909090",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "body",
+									"value": "zzzzzzzzwyieuyriuwey89998"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get users/todos",
+			"item": [
+				{
+					"name": "[CT-001] - Buscar todos por user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									"\r",
+									"pm.test(\"Save first elem of resp in collection variables\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"vid\", jsonData[0].id);\r",
+									"    pm.collectionVariables.set(\"vuser_id\", jsonData[0].user_id);\r",
+									"    pm.collectionVariables.set(\"vtitle\", jsonData[0].title);\r",
+									"    pm.collectionVariables.set(\"vdue_on\", jsonData[0].due_on);\r",
+									"    pm.collectionVariables.set(\"vstatus\", jsonData[0].status);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/{{vuser_id}}/todos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{vuser_id}}",
+								"todos"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-002] - Filtrar todos por title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"title\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/{{vuser_id}}/todos?title={{vtitle}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{vuser_id}}",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "{{vtitle}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-003] - Filtrar todos por due_on",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"due_on\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/{{vuser_id}}/todos?due_on={{vdue_on}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{vuser_id}}",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "due_on",
+									"value": "{{vdue_on}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-004] - Filtrar todos por status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"id\",\"user_id\",\"title\",\"due_on\",\"status\"])\r",
+									"_.bodyValueIsEqualVariable([\"status\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/{{vuser_id}}/todos?status={{vstatus}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{vuser_id}}",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "{{vstatus}}"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-005] - Buscar todos por user inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/--v789s87df98sdfsjdhfkcvv/todos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"--v789s87df98sdfsjdhfkcvv",
+								"todos"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-006] - Buscar todos por user inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHas([\"message\"])\r",
+									"_.bodyValueIsEqualVariable([\"message\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/909099999099999/todos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"909099999099999",
+								"todos"
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-007] - Filtrar todos por title inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/{{vuser_id}}/todos?title=sdjhfkjshdfs9087df98s7d98f7s987df",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{vuser_id}}",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "sdjhfkjshdfs9087df98s7d98f7s987df"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-008] - Filtrar todos por due_on inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/{{vuser_id}}/todos?due_on=sdjhfkjshdfs9087df98s7d98f7s987df",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{vuser_id}}",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "due_on",
+									"value": "sdjhfkjshdfs9087df98s7d98f7s987df"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				},
+				{
+					"name": "[CT-009] - Filtrar todos por status inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"_.statusCode(200)\r",
+									"_.contentTypePresent()\r",
+									"_.responseTimeBelow(5000)\r",
+									"_.bodyHasEmptyArray()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public/v2/users/{{vuser_id}}/todos?status=sdjhfkjshdfs9087df98s7d98f7s987df",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{vuser_id}}",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "sdjhfkjshdfs9087df98s7d98f7s987df"
+								}
+							]
+						},
+						"description": "API gorest"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"Object.prototype.statusCode = function(status){",
+					"    pm.test(`Status code is ${status}`, function () {",
+					"        pm.response.to.have.status(status);",
+					"    });",
+					"};",
+					"",
+					"Object.prototype.contentTypePresent = function(property){",
+					"    pm.test(\"Content-Type is present\", function () {",
+					"        pm.response.to.have.header(\"Content-Type\");",
+					"    });",
+					"};",
+					"",
+					"Object.prototype.responseTimeBelow = function(time){",
+					"    pm.test(`Response time is less than ${time}ms`, function () {",
+					"        pm.expect(pm.response.responseTime).to.be.below(5000);",
+					"    });",
+					"};",
+					"",
+					"Object.prototype.paramIsUndefined = function(param){",
+					"    if(param === \"undefined\"){",
+					"        return true",
+					"    }",
+					"    return false",
+					"}",
+					"",
+					"Object.prototype.bodyValueIsEqualVariable = function(propertys){",
+					"    var jsonData = pm.response.json();",
+					"    console.log(jsonData);",
+					"",
+					"    if (Array.isArray(jsonData)){ // array",
+					"       ",
+					"            if(!jsonData.length){",
+					"                console.log(\"array empty\")",
+					"                pm.test(`body value is not equal to var [${propertys}]: `,function() { throw new Error(\" body is []\"); });",
+					"                return;",
+					"            }",
+					"",
+					"            _.each(jsonData, (object) => {",
+					"                propertys.forEach(function(item) {",
+					"                    let value = pm.collectionVariables.get(`v${item}`)",
+					"                    ",
+					"                    if (paramIsUndefined(value)) ",
+					"                        pm.test(`param not exist ${value}`,function() { throw new Error(\"\"); });",
+					"",
+					"                    pm.test(`Body (${item} === ${value})`, function () {",
+					"                        var valueItem = object[item];",
+					"                        console.log(valueItem)",
+					"                        console.log(value)",
+					"                        pm.expect(valueItem).to.eq(value); ",
+					"                    });",
+					"                });",
+					"            });",
+					"",
+					"    }else{ // is not array",
+					"        console.log(\"not array\")",
+					"        propertys.forEach(function(item) {",
+					"            let value = \"\" + pm.collectionVariables.get(`v${item}`)",
+					"            ",
+					"            if (paramIsUndefined(value)){",
+					"                pm.test(`Body - variable not exist v${item}`,function() { throw new Error(\"var is undefined\"); });",
+					"                return;",
+					"            }",
+					"",
+					"            pm.test(`Body (${item} === ${value})`, function () {",
+					"                var valueItem = \"\" + jsonData[item];",
+					"                console.log(`${valueItem}`)",
+					"                pm.expect(valueItem).to.eql(value);",
+					"            });",
+					"        });",
+					"    }",
+					"",
+					"};",
+					"",
+					"Object.prototype.bodyHas = function(propertys){",
+					"    var jsonData = pm.response.json();",
+					"    console.log(jsonData);",
+					"",
+					"    if (Array.isArray(jsonData)){ // array",
+					"        if(!jsonData.length){",
+					"            console.log(\"array empty\")",
+					"            pm.test(`body not has [${propertys}]: `,function() { throw new Error(\" body is []\"); });",
+					"            return;",
+					"        }",
+					"       ",
+					"        pm.test(`Body has [${propertys}]`, function () {",
+					"            ",
+					"            _.each(jsonData, (object) => {",
+					"                propertys.forEach(function(item) {",
+					"                    console.log(\"check if body have -> \"+item)",
+					"                    pm.expect(object).to.have.property(item);",
+					"                });",
+					"            });",
+					"        });",
+					"",
+					"    }else{ // is not array",
+					"        pm.test(`Body has [${propertys}]`, function () {",
+					"            var jsonData = pm.response.json();",
+					"",
+					"            propertys.forEach(function(item) {",
+					"                console.log(\"check if body have -> \"+item)",
+					"                pm.expect(jsonData).to.have.property(item);",
+					"            });",
+					"        });",
+					"    }",
+					"",
+					"};",
+					"",
+					"",
+					"Object.prototype.bodyHasEmptyArray = function(){",
+					"    pm.test(`Body has empty array`, function () {",
+					"        var jsonData = pm.response.json();",
+					"        pm.expect(jsonData.length).to.eql(0);",
+					"",
+					"        // var res = (_.isEmpty(jsonData));",
+					"        // pm.expect(res).to.be.true;",
+					"    });",
+					"};",
+					"",
+					"// This Function Not working in the moment",
+					"// pm.collectionVariables.set is not working in this context ",
+					"Object.prototype.saveFirtObjectOfRequestInVariable = function(propertys){",
+					"    var jsonData = pm.response.json();",
+					"    console.log(jsonData);",
+					"    test();",
+					"",
+					"    if (Array.isArray(jsonData)){ // array",
+					"        if(!jsonData.length){",
+					"            console.log(\"array empty\")",
+					"            pm.test(`body not has [${propertys}]: `,function() { throw new Error(\" body is []\"); });",
+					"            return;",
+					"        }",
+					"       ",
+					"        const firstElement = jsonData[0]",
+					"        console.log(firstElement)",
+					"        pm.test(`Save propertys in variable [${propertys}]`, function () {",
+					"            propertys.forEach(function(item) {",
+					"                console.log(firstElement[item])",
+					"                pm.collectionVariables.set(`v${item}`, firstElement[item]);",
+					"            });",
+					"        });",
+					"",
+					"    }else{ // is not array",
+					"        pm.test(`Body has [${propertys}]`, function () {",
+					"            var jsonData = pm.response.json();",
+					"",
+					"            propertys.forEach(function(item) {",
+					"                console.log(\"check if body have -> \"+item)",
+					"                pm.expect(jsonData).to.have.property(item);",
+					"            });",
+					"        });",
+					"    }",
+					"};",
+					"",
+					"",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "vid",
+			"value": ""
+		},
+		{
+			"key": "vuser_id",
+			"value": ""
+		},
+		{
+			"key": "vtitle",
+			"value": ""
+		},
+		{
+			"key": "vbody",
+			"value": ""
+		},
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "vmessage",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "vpost_id",
+			"value": ""
+		},
+		{
+			"key": "vname",
+			"value": ""
+		},
+		{
+			"key": "vemail",
+			"value": ""
+		},
+		{
+			"key": "vdue_on",
+			"value": ""
+		},
+		{
+			"key": "vstatus",
+			"value": ""
+		},
+		{
+			"key": "vgender",
+			"value": ""
+		},
+		{
+			"key": "status",
+			"value": ""
+		}
+	]
+}
