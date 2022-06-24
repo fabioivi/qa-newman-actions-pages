@@ -9,6 +9,16 @@ Este projeto é composto por 3 arquivos principais:
 
 💡 Para o Workflow funcionar é preciso que os nomes dos arquivos sejam iguais aos informados no github-ci (gorest.json, environment.json)
 
+### 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+* [Postman](https://www.postman.com/)      
+* [Newman](https://github.com/postmanlabs/newman)      
+* [Github Actions](https://docs.github.com/pt/actions)
+* [Newman Reporter-htmlextra](https://github.com/DannyDainton/newman-reporter-htmlextra)
+* [Actions Gh-pages@v3](https://github.com/peaceiris/actions-gh-pages)
+
 ### 🎲 Como utilizar este projeto
 
 ```bash
