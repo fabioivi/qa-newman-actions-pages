@@ -23,5 +23,5 @@ $ environment.json
 
 # Agora é só enviar as modificações para o github e pronto
 
-# O servidor inciará no link - https://seuNomeDeUsuario.github.io/qa-newman-actions-pages/
+# O servidor iniciará no link - https://seuNomeDeUsuario.github.io/qa-newman-actions-pages/
 ```
