@@ -3,7 +3,7 @@
 	"name": "Fábio Duarte",
 	"values": [
 		{
-			"key": "base_url",
+			"key": "baseURL",
 			"value": "https://gorest.co.in",
 			"enabled": true
 		},
