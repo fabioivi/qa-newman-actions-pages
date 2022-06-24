@@ -1,13 +1,4 @@
-# Workflow do GitHub Actions para testes de API REST, testes via chamadas HTTP com Newman + Postman, push no Github Pages
-
-## 🚀 Organização do projeto
-
-Este projeto é composto por 3 arquivos principais:
-1. gorest.json - Arquivo gerado pelo Postman com os testes realizados
-2. environment.json - Arquivo gerado pelo Postman com as váriaveis de ambiente utilizadas
-3. github-ci - Arquivo com configuração de CI (instalação dos pacotes, execução dos testes e deploy do site)
-
-💡 Para o Workflow funcionar é preciso que os nomes dos arquivos sejam iguais aos informados no github-ci (gorest.json, environment.json)
+# Automatização de Testes e Deploy dos Relatórios no Github Pages
 
 ### 🛠 Tecnologias
 
@@ -16,8 +7,19 @@ As seguintes ferramentas foram usadas na construção do projeto:
 * [Postman](https://www.postman.com/)      
 * [Newman](https://github.com/postmanlabs/newman)      
 * [Github Actions](https://docs.github.com/pt/actions)
-* [Newman Reporter-htmlextra](https://github.com/DannyDainton/newman-reporter-htmlextra)
-* [Actions Gh-pages@v3](https://github.com/peaceiris/actions-gh-pages)
+* [Newman Reporter HTML](https://github.com/DannyDainton/newman-reporter-htmlextra)
+* [Actions Gh Pages](https://github.com/peaceiris/actions-gh-pages)
+
+### 🚀 Organização do projeto
+
+Este projeto é composto por 3 arquivos principais:
+1. gorest.json - Arquivo gerado pelo Postman com os testes realizados
+2. environment.json - Arquivo gerado pelo Postman com as váriaveis de ambiente utilizadas
+3. github-ci - Arquivo com configuração de CI (instalação dos pacotes, execução dos testes e deploy do site)
+
+💡 Para o Workflow funcionar é preciso que os nomes dos arquivos sejam iguais aos informados no github-ci (gorest.json, environment.json)
+
+
 
 ### 🎲 Como utilizar este projeto
 
