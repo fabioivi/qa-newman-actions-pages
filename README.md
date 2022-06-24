@@ -19,6 +19,9 @@ Este projeto é composto por 3 arquivos principais:
 
 💡 Para o Workflow funcionar é preciso que os nomes dos arquivos sejam iguais aos informados no github-ci (gorest.json, environment.json)
 
+### 🎨 Layout do Relatório
+
+<img src="https://github.com/fabioivi/qa-newman-actions-pages/blob/main/.github/images/Default_Report.gif" alt="screenshot projeto" width="800" >
 
 
 ### 🎲 Como utilizar este projeto
