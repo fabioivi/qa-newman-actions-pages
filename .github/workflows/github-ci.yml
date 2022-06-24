@@ -45,3 +45,10 @@ jobs:
         with:
             name: report
             path: ./results/report.html
+      
+      # Publish report on the github pages
+      - name: Publish Report
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./results/
