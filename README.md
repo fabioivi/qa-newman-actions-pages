@@ -36,6 +36,8 @@ $ gorest.json
 # Atualize o arquivo environment.json com o seu arquivo de váriaveis de ambiente gerado pelo Postman
 $ environment.json
 
+# Clique no menu settings e depois selecione o menu Pages, na opção Source selecione a opção "Deploy from branch" e depois na opção branch escolha a opcão gh-pages
+
 # Agora é só enviar as modificações para o github e pronto
 
 # O servidor iniciará no link - https://seuNomeDeUsuario.github.io/qa-newman-actions-pages/
