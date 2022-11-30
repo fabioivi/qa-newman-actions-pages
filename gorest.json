@@ -1708,7 +1708,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseURL}}/public/v2/posts?user_id=4083&title=Perspiciatis acerbitas alter adfero caveo speciosus certo ait comes repellat.&body=xxxxxxxxxxxxxxx",
+									"raw": "{{baseURL}}/public/v2/posts?user_id={{vuser_id}}&title={{vtitle}}&body={{vbody}}",
 									"host": [
 										"{{baseURL}}"
 									],
@@ -1720,15 +1720,15 @@
 									"query": [
 										{
 											"key": "user_id",
-											"value": "4083"
+											"value": "{{vuser_id}}"
 										},
 										{
 											"key": "title",
-											"value": "Perspiciatis acerbitas alter adfero caveo speciosus certo ait comes repellat."
+											"value": "{{vtitle}}"
 										},
 										{
 											"key": "body",
-											"value": "xxxxxxxxxxxxxxx"
+											"value": "{{vbody}}"
 										}
 									]
 								},
@@ -1757,7 +1757,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseURL}}/public/v2/posts?user_id=4083&title=Perspiciatis acerbitas alter adfero caveo speciosus certo ait comes repellat.",
+									"raw": "{{baseURL}}/public/v2/posts?user_id={{vuser_id}}&title={{vtitle}}",
 									"host": [
 										"{{baseURL}}"
 									],
@@ -1769,11 +1769,11 @@
 									"query": [
 										{
 											"key": "user_id",
-											"value": "4083"
+											"value": "{{vuser_id}}"
 										},
 										{
 											"key": "title",
-											"value": "Perspiciatis acerbitas alter adfero caveo speciosus certo ait comes repellat."
+											"value": "{{vtitle}}"
 										}
 									]
 								},
@@ -3167,7 +3167,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"_.statusCode(200)\r",
+											"_.statusCode(404)\r",
 											"_.contentTypePresent()\r",
 											"_.responseTimeBelow(5000)\r",
 											"_.bodyHas([\"message\"])\r",
@@ -3583,7 +3583,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"_.statusCode(200)\r",
+											"_.statusCode(404)\r",
 											"_.contentTypePresent()\r",
 											"_.responseTimeBelow(5000)\r",
 											"_.bodyHas([\"message\"])\r",
